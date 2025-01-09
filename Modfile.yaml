@@ -23,7 +23,8 @@ services:
     image: alpine
     runConfig:
       runOnce: true
-      command: sh -c "cp /tmp/raw-config.yaml /config/config.yaml && sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /config/config.yaml && sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /config/config.yaml"
+      command: |
+        sh -c "cp /tmp/raw-config.yaml /config/config.yaml && sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /config/config.yaml && sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /config/config.yaml"
     include:
       - mountPoint: /tmp/raw-config.yaml
         source: config.yaml
