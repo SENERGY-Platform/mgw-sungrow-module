@@ -1,8 +1,8 @@
 # yaml-language-server: $schema=https://raw.githubusercontent.com/SENERGY-Platform/mgw-modfile-lib/main/schema/v1.json
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-sungrow-module
-name: SunGather
-version: v0.0.8
+name: SunGrow
+version: v0.0.9
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -36,4 +36,4 @@ configs:
     targets:
       - refVar: INVERTER_IP
         services:
-          - init
+          - sungather
