@@ -2,7 +2,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-sungrow-module
 name: SunGather
-version: v0.0.5
+version: v0.0.6
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -27,10 +27,12 @@ services:
     runConfig:
       runOnce: true
       command: |
-        sh -c init.sh
+        sh -c /tmp/init.sh
     include:
       - mountPoint: /tmp/raw-config.yaml
         source: config.yaml
+      - mountPoint: /tmp/init.sh
+        source: init.sh
 volumes:
   config:
     - mountPoint: /custom-config
