@@ -2,7 +2,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-sungrow-module
 name: SunGather
-version: v0.0.2
+version: v0.0.3
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -18,19 +18,22 @@ services:
   sungather:
     name: sungather
     image: bohdans/sungather
+    runConfig:
+      command: |
+       /opt/virtualenv/bin/python sungather.py -c /custom-config/config.yaml -l /logs/
   init:
     name: init
     image: alpine
     runConfig:
       runOnce: true
       command: |
-        sh -c "cp /tmp/raw-config.yaml /config/config.yaml && sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /config/config.yaml && sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /config/config.yaml"
+        sh -c "cp /tmp/raw-config.yaml /custom-config/config.yaml && sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /custom-config/config.yaml && sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /custom-config/config.yaml"
     include:
       - mountPoint: /tmp/raw-config.yaml
         source: config.yaml
 volumes:
   config:
-    - mountPoint: /config
+    - mountPoint: /custom-config
       services:
         - sungather
         - init
