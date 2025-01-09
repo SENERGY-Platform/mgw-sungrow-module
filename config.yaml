@@ -24,8 +24,8 @@ inverter:
 exports:
   # Publish Registers to MQTT / Home Assistant
   - name: mqtt
-    enabled: True                          # [Optional] Default is False
-    host: MQTT_IP                     # [Required] IP or Hostname of MQTT Server 
+    enabled: True                           # [Optional] Default is False
+    host: MQTT_IP                           # [Required] IP or Hostname of MQTT Server 
     port: 1881                              # [Optional] Default 1883
     # topic: "SunGather/{serial_number}"    # [Optional] Default: "SunGather/{serial_number}"
     # username:                             # [Optional] Username is MQTT server requires it
