@@ -2,7 +2,7 @@
 modfileVersion: "v1"
 id: github.com/SENERGY-Platform/mgw-sungrow-module
 name: SunGrow
-version: v0.0.10
+version: v0.0.11
 type: device-connector
 deploymentType: single
 license: "Apache License 2.0"
@@ -23,10 +23,8 @@ services:
         source: config.yaml
     runConfig:
       command:
-      - sh -c "cp /tmp/config.yaml /config/config.yaml"
-      - sh -c "sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /custom-config/config.yaml"
-      - sh -c "sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /custom-config/config.yaml"
-      - /opt/virtualenv/bin/python sungather.py -c /config/config.yaml -l /logs/
+      - sh -c
+      - cp /tmp/config.yaml /config/config.yaml && sed -i -e 's/INVERTER_IP/'"${INVERTER_IP}"'/g' /custom-config/config.yaml && sed -i -e 's/MQTT_IP/'"${MQTT_IP}"'/g' /custom-config/config.yaml && /opt/virtualenv/bin/python sungather.py -c /config/config.yaml -l /logs/
 configs:
   INVERTER_IP:
     optional: false
